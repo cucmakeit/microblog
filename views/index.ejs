@@ -1,11 +1,76 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title><%= title %> - Microblog</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <style type='text/css'>
+      body{
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+    </style>
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+  <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <a class="brand" href="/">Microblog</a>
+    <div class="nav-collapse">
+      <ul class="nav">
+      <li class="active"><a href="/">首页</a></li>
+      <li><a href="/login">登入</a></li>
+      <li><a href="/reg">注册</a></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="container" class="container">
+  
+  <div class="hero-unit">
+  <h1>欢迎来到 Microblog</h1>
+  <p>Microblog 是一个基于 Node.js 的微博系統。</p>
+  <p>
+    <a class="btn btn-primary btn-large" href="/login">登录</a>
+    <a class="btn btn-large" href="/reg">立即注册</a>
+  </p>
+</div>
+
+<div class="row">
+  <div class="span4">
+    <h2>方大同 说</h2>
+     <p>今晚在新加坡</p>
+  </div>
+  <div class="span4">
+    <h2>BatmanFly 说</h2>
+     <p>
+     我们的KDD'14论文“We know what you want to buy: a demographic-based system for product recommendation on microblogs”已经online了 http://t.cn/RPgg8zk，论文系统网址 http://t.cn/RPggYCu 。系统目前处于初期阶段，加强工作还在进行中，仅供学术演示。特别欢迎企业和公司的人讨论与合作。</p>
+ </div>
+  <div class="span4">
+    <h2>GEM鄧紫棋</h2>
+    <p>重回巡演舞台的感覺超級棒！X.X.X. Live瀋陽站，我人生第二場三萬人戶外體育場演唱會，圓滿成功地結束！今晚跟月亮和你們一起渡過，一切都很感動，而且雖然才11度，但真的一點都不冷！記住，相信自己！想放棄的時候，記得鄧紫棋叫你不要放棄！我的音樂會一直陪伴你們！我們後會有期：）</p>
+  </div>
+</div>
+
+
+
+
+  <hr />
+  <footer>
+    <p><a href="http://www.weibo.com/u/2150756497/home?wvr=5" target="_blank">新浪微博</a> 2014</p>
+  </footer>
+  </div>
+
   </body>
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
 </html>
