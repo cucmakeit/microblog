@@ -29,18 +29,15 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
     secret: settings.cookieSecret,
-    key: settings.db,
     cookie: {maxAge: 1000 * 60 * 30},  //30min
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({
-        host: settings.host,
-        port: settings.port,
         db: settings.db
     })
 }));
-app.use(flash());
 
+app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
