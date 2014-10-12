@@ -1,30 +1,20 @@
 
 <% include layout_top %> 
 
+  <% if (!user) { %>
   <div class="hero-unit">
-  <h1>欢迎来到 Microblog</h1>
-  <p>Microblog 是一个基于 Node.js 的微博系統。</p>
-  <p>
-    <a class="btn btn-primary btn-large" href="/login">登录</a>
-    <a class="btn btn-large" href="/reg">立即注册</a>
-  </p>
+    <h1>欢迎来到 Microblog</h1>
+    <p>Microblog 是一个基于 Node.js 的微博系统。</p>
+    <p>
+      <a class="btn btn-primary btn-large" href="/login">登录</a>
+      <a class="btn btn-large" href="/reg">立即注册</a>
+    </p>
   </div>
+<% } else { %>
+  <% include say %> 
+<% } %>
+<% include posts %> 
 
-  <div class="row">
-    <div class="span4">
-      <h2>方大同 说</h2>
-       <p>今晚在新加坡</p>
-    </div>
-    <div class="span4">
-      <h2>BatmanFly 说</h2>
-       <p>
-       我们的KDD'14论文“We know what you want to buy: a demographic-based system for product recommendation on microblogs”已经online了 http://t.cn/RPgg8zk，论文系统网址 http://t.cn/RPggYCu 。系统目前处于初期阶段，加强工作还在进行中，仅供学术演示。特别欢迎企业和公司的人讨论与合作。</p>
-   </div>
-    <div class="span4">
-      <h2>GEM鄧紫棋</h2>
-      <p>重回巡演舞台的感覺超級棒！X.X.X. Live瀋陽站，我人生第二場三萬人戶外體育場演唱會，圓滿成功地結束！今晚跟月亮和你們一起渡過，一切都很感動，而且雖然才11度，但真的一點都不冷！記住，相信自己！想放棄的時候，記得鄧紫棋叫你不要放棄！我的音樂會一直陪伴你們！我們後會有期：）</p>
-    </div>
-  </div>
 
 <% include layout_bottom %> 
 

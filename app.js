@@ -51,6 +51,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 视图交互，一定要放在路由语句前
 app.use(function(req,res,next){
   res.locals.user=req.session.user;
+  if(req.session.user){
+    res.locals.username = req.session.user.name;
+  }else{
+    res.locals.username = ""; 
+  }
+  
 
   var err = req.flash('error');
   var success = req.flash('success');

@@ -22,25 +22,15 @@ User.prototype.save = function save(callback){
 				mongodb.close();
 				return callback(err);
 			}
-			/*
-			// 为 name 属性添加索引  这段代码有问题，加上以后无法正常工作，
-			//抛出异常：Error: Can't set headers after they are sent.
-			collection.ensureIndex('name', {unique: true}, function(err){
-				if(err){
-					mongodb.close();
-					return callback(err);
-				}
-			});
-			*/
-			// 写入 user 文档
 			collection.ensureIndex('name', {unique: true}, function(err, user){});
+			// 写入 user 文档
 			collection.insert(user, {safe: true}, function(err, user){
 				mongodb.close();
 				if(err){
 					return callback(err);
 				}
-				callback(err, user);
 			});
+			callback(err, user);
 		});
 	});
 };
