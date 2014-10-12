@@ -4,7 +4,7 @@ function User(user){
 	this.name = user.name;
 	this.password = user.password;
 };
-
+module.exports = User;
 
 User.prototype.save = function save(callback){
 	// 存入 Mongodb 的文档
@@ -33,6 +33,7 @@ User.prototype.save = function save(callback){
 			});
 			*/
 			// 写入 user 文档
+			collection.ensureIndex('name', {unique: true}, function(err, user){});
 			collection.insert(user, {safe: true}, function(err, user){
 				mongodb.close();
 				if(err){
@@ -70,4 +71,3 @@ User.get = function get(username, callback){
 	});
 };
 
-module.exports = User;
