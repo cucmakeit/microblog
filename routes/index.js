@@ -10,21 +10,13 @@ router.get('/', function(req, res) {
 	res.render('index', { title: '首页' });
 });
 
-/*用户主页*/
-router.get('/u/:user', function(req, res){
-	res.send('user: '+ req.params.username);
-});
-
-/*发表信息*/
-router.post('/post', function(req, res){
-
-});
-
 /*用户注册*/
+router.get('/reg', checkNotLogin);
 router.get('/reg', function(req, res){
 	res.render('reg', { title: '用户注册'})
 });
 
+router.post('/reg', checkNotLogin);
 router.post('/reg', function(req, res){
 	// 检验用户两次输入的口令是否一致
 	if(req.body['password-repeat'] != req.body['password']) {
@@ -64,17 +56,57 @@ router.post('/reg', function(req, res){
 });
 
 /*用户登录*/
+router.get('/login', checkNotLogin);
 router.get('/login', function(req, res){
-
+	res.render('login', {
+		title: '用户登录'
+	});
 });
 
-router.post('/doLogin', function(req, res){
+router.post('/login', checkNotLogin);
+router.post('/login', function(req, res){
+	// 生成口令的散列值
+	var md5 = crypto.createHash('md5');
+	var password = md5.update(req.body.password).digest('base64');
 
+	User.get(req.body.username, function(err, user){
+		if(!user){
+			req.flash('error', '用户不存在');
+			return res.redirect('/login');
+		}
+		if(user.password != password){
+			req.flash('error', '密码错误');
+			return res.redirect('/login');
+		}
+		req.session.user = user;
+		req.flash('success', '登录成功');
+		res.redirect('/');
+	})
 });
 
-/*用户登出*/
+/*用户退出*/
+router.get('/logout', checkLogin);
 router.get('/logout', function(req, res){
-
+	req.session.user = null;
+	req.flash('success', '退出登录成功');
+	res.redirect('/');
 });
+
+
+function checkLogin(req, res, next){
+	if(!req.session.user){
+		req.flash('error', '未登录');
+		return res.redirect('/login');
+	}
+	next();
+}
+
+function checkNotLogin(req, res, next){
+	if(req.session.user){
+		req.flash('error', '已登录');
+		return res.redirect('/');
+	}
+	next();
+}
 
 module.exports = router;

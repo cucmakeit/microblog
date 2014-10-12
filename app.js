@@ -15,6 +15,7 @@ var MongoStore = require('connect-mongo')(session);
 
 
 var settings = require('./settings');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -29,7 +30,7 @@ app.set('view engine', 'ejs');
 app.use(session({
     secret: settings.cookieSecret,
     key: settings.db,
-    cookie: {maxAge: 1000 * 60 * 30},
+    cookie: {maxAge: 1000 * 60 * 30},  //30min
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({

@@ -24,7 +24,7 @@ User.prototype.save = function save(callback){
 			}
 			/*
 			// 为 name 属性添加索引  这段代码有问题，加上以后无法正常工作，
-			抛出异常：Error: Can't set headers after they are sent.
+			//抛出异常：Error: Can't set headers after they are sent.
 			collection.ensureIndex('name', {unique: true}, function(err){
 				if(err){
 					mongodb.close();
