@@ -13,6 +13,9 @@ var connect = require('connect');
 var flash = require('connect-flash');
 var MongoStore = require('connect-mongo')(session);
 
+var fs = require('fs');
+var accessLogfile = fs.createWriteStream('access.log', {flags: 'a'});
+var errorLogfile = fs.createWriteStream('error.log', {flags: 'a'});
 
 var settings = require('./settings');
 
@@ -24,7 +27,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
