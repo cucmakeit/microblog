@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 		}
 		res.render('index', {
 			title: '首页',
-			posts: posts,
+			posts: posts
 		});
 	});
 });
@@ -39,7 +39,7 @@ router.post('/reg', function(req, res){
 	
 	var newUser = new User({
 		name: req.body.username,
-		password: password,
+		password: password
 	});
 
 	// 检查用户名是否已经存在

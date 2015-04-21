@@ -1,4 +1,4 @@
-var mongodb = require('./db')
+var mongodb = require('./db');
 
 function Post(username, post, time){
 	this.user = username;
@@ -8,7 +8,7 @@ function Post(username, post, time){
 	}else{
 		this.time = new Date();
 	}
-};
+}
 module.exports = Post;
 
 Post.prototype.save = function save(callback){
@@ -16,7 +16,7 @@ Post.prototype.save = function save(callback){
 	var post = {
 		user: this.user,
 		post: this.post,
-		time: this.time,
+		time: this.time
 	};
 	mongodb.open(function(err, db){
 		if(err){
@@ -61,7 +61,7 @@ Post.get = function get(username, callback){
 					callback(err, null);
 				}
 				//封装 posts 为 Post 对象
-				var posts = []
+				var posts = [];
 				docs.forEach(function(doc, index){
 					var post = new Post(doc.user, doc.post, doc.time);
 					posts.push(post);
